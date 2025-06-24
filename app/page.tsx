@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import { Search } from "lucide-react"
+import { Footer } from "@/components/footer"
+import { Navbar } from "@/components/navbar"
 
 interface SentimentResult {
   sentiment: "positive" | "negative" | "neutral"
@@ -63,24 +65,30 @@ export default function HomePage() {
 
   if (result) {
     return (
-      <div className="min-h-screen bg-gray-50">
-        {/* Header with theater image */}
-        <div className="relative h-64 bg-gradient-to-r from-red-900 via-red-800 to-red-900 overflow-hidden rounded-b-2xl md:rounded-b-none">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: "url('/images/theater-bg.webp')",
-              backgroundBlendMode: "overlay",
-            }}
-          />
-          <div className="absolute inset-0 bg-black/40" />
-          <div className="relative z-10 flex items-center justify-center h-full">
-            <h1 className="text-white text-2xl font-bold">Sentiment Analyzer</h1>
-          </div>
-        </div>
+      <div className="min-h-screen bg-gray-50 flex flex-col">
+        {/* Sticky Navbar */}
+        <Navbar />
 
-        <div className="max-w-4xl mx-auto px-4 py-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Sentiment Analysis Results</h2>
+        {/* Add top padding to account for fixed navbar */}
+        <div className="pt-20 flex-1 max-w-4xl mx-auto px-4 py-8 pb-4 w-full">
+          {/* Hero Section for Results - Matching Home Page Style */}
+          <Card className="mb-8 overflow-hidden rounded-2xl">
+            <div className="relative h-64 md:h-80">
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{
+                  backgroundImage: "url('/images/theater-bg.webp')",
+                }}
+              />
+              <div className="absolute inset-0 bg-black/50" />
+              <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
+                <h2 className="text-white text-3xl md:text-4xl font-bold mb-4">Sentiment Analysis Results</h2>
+                <p className="text-white/90 text-lg max-w-2xl">
+                  Here's the detailed analysis of your movie review sentiment.
+                </p>
+              </div>
+            </div>
+          </Card>
 
           {/* Sentiment and Confidence Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -168,22 +176,21 @@ export default function HomePage() {
               Analyze Another Review
             </Button>
           </div>
-
-          {/* Footer */}
-          <div className="mt-12 text-center text-sm text-gray-500">
-            © 2025 Sentiment Analyzer. Built with ❤️ by Dinkar Dubey.
-          </div>
         </div>
+
+        {/* Footer */}
+        <Footer />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 py-8 pb-4">
-        {/* Header */}
-        <h1 className="text-2xl font-bold text-gray-900 mb-8">Sentiment Analyzer</h1>
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      {/* Sticky Navbar */}
+      <Navbar />
 
+      {/* Add top padding to account for fixed navbar */}
+      <div className="pt-20 flex-1 max-w-4xl mx-auto px-4 py-8 pb-4 w-full">
         {/* Hero Section */}
         <Card className="mb-8 overflow-hidden rounded-2xl">
           <div className="relative h-64 md:h-80">
@@ -230,11 +237,10 @@ export default function HomePage() {
             </form>
           </CardContent>
         </Card>
-        {/* Footer */}
-        <div className="mt-16 mb-8 text-center text-sm text-gray-500">
-          © 2025 Sentiment Analyzer. Built with ❤️ by Dinkar Dubey.
-        </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }
